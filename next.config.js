@@ -1,7 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
+module.exports = {
+  
+  images: {
+    dangerouslyAllowSVG: true,
+    domains: ["rb.gy"]
+  },
 }
-
-module.exports = nextConfig
