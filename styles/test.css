@@ -1,0 +1,19 @@
+div, span, article, section, header, footer, p , ul, li, label { box-sizing: border-box;}
+
+body { font-size: 1.5rem;}
+
+.container {
+    display: flex;
+    justify-content: flex-end;
+    height: 100vh;
+    background: lightgray;
+}
+
+.item {
+    background: rgba(97, 30, 30, 0.5);
+}
+
+
+.item:nth-child(odd) {
+    background: rgba(255, 255 , 0 , 0.5);
+}
