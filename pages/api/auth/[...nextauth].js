@@ -7,8 +7,8 @@ export default NextAuth ({
     // configure one or more authentication providers
     providers: [
         GoogleProvider({
-            clientId: process.env.GOGOLE_ID,
-            clientSecret: process.env.GOOGLE_SECRET,
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
         // add more providers here! kakao, naver, facebook ETC...
     ],

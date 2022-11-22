@@ -7,7 +7,10 @@ import OndemandVideoShartIcon from "@mui/icons-material/OndemandVideoSharp";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import ArrowForwardIosRoundedIcon  from '@mui/icons-material/ArrowForwardIosRounded';
 
-function Home() {
+import { getProviders, signIn } from 'next-auth/react';
+
+function Home({providers}) {
+    console.log("providers", providers)
   return (
     <div className='space-y-10 relative'>
         <Head>
@@ -25,9 +28,18 @@ function Home() {
                     <HeaderLink Icon={OndemandVideoShartIcon} text="Learning" />
                     <HeaderLink Icon={BusinessCenterIcon} text="Jobs" />
                 </div>
-                <div className='pl-4'>
-                    <button className='text-blue-700 font-semibold rounded-full border border-blue-700 px-5 py-1.5 transition-all hover:border-2'> Sign in </button>
-                </div>
+
+                { Object.values(providers).map((provider) => (
+                    <div key={provider.name}>
+                        <div className='pl-4'>
+                            <button className='text-blue-700 font-semibold rounded-full border border-blue-700 px-5 py-1.5 transition-all hover:border-2'
+                                    onClick={ () => signIn(provider.id, {callbackUrl: `/`}) }>
+                            Sign in
+                            </button>
+                        </div>        
+                    </div>
+                ))}
+                
             </div>
         </header>
 
@@ -59,3 +71,18 @@ function Home() {
 }
 
 export default Home;
+
+// server side rendering
+export async function getServerSideProps(context) {
+
+    /**
+     * /api > auth / [..extAuth].js에 정의해놓은 providers(소셜인증방식)를 가져옴
+     */
+    const providers = await getProviders();
+
+    return {
+        props: {
+            providers,
+        }
+    }
+}
