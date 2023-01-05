@@ -11,6 +11,7 @@ import { Avatar } from '@mui/material';
 import { AppsOutlined } from '@mui/icons-material';
 import { useTheme } from 'next-themes';
 import { motion } from 'framer-motion';
+import { useSession } from "next-auth/react";
 
 const spring = {
     type : "spring",
